@@ -146,7 +146,7 @@ function onEditbtn(ele){
 
     makeApiCall('GET',EDIT_URL)
         .then(res=>{
-            
+
             titleControl.value=res.title;
             bodyControl.value=res.body;
             userIdControl.value=res.userId;
@@ -194,6 +194,7 @@ function onUpdatePostbtn(){
         postForm.reset()
         addBtn.classList.remove('d-none')
         updateBtn.classList.add('d-none')
+        localStorage.removeItem('EDIT_ID');
         snackbar(`The Post With ID ${res.id} is Updated ..`,'success')
 
             card.scrollIntoView({
@@ -229,7 +230,7 @@ function onDeletebtn(ele){
             makeApiCall('DELETE',REMOVE_URL,null)
                 .then(res=>{
                     document.getElementById(REMOVE_ID).remove()
-                    snackbar(`The Post with Id ${REMOVE_ID} Remove successfully....`,'success')
+                    snackbar(`The Post with ID ${REMOVE_ID} removed successfully.`,'success')
   })
                 .catch(err=>snackbar(err,'error'))
   }
